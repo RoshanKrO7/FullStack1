@@ -1,5 +1,5 @@
 using System;
-using System.Collections.generic;
+using System.Collections.Generic;
 
 public class One
 {
@@ -30,15 +30,20 @@ public class One
         {
             Console.WriteLine(k);
         }
-        Hastable table1=new Hastable();
+        Hastable table1 = new Hastable();
         table1.add(1, "abc");
         table1.add("def", 2);
         table1.add(3, 4);
         Console.WriteLine("Key and Value pairs from table1");
-        foreach(var i in table1)
+        foreach (var i in table1)
         {
             Console.Write(i);
         }
+        ArrayList1 list1 = new ArrayList1();
+        list1.add("Roshan");
+        list1.add("Swarnim");
+        list1.add("Sayeed");
+        list1.add("Ramkrishna");
     }
-    
+
 }
