@@ -1,0 +1,62 @@
+using System;
+
+// Base class
+class Animal {
+    public string Name { get; set; }
+    public int Age { get; set; }
+
+    // Constructor
+    public Animal(string name, int age) {
+        Name = name;
+        Age = age;
+    }
+
+    // Method
+    public virtual void DisplayInfo() {
+        Console.WriteLine($"Name: {Name}, Age: {Age}");
+    }
+
+    // Event declaration
+    public event EventHandler<EventArgs> AnimalEvent;
+
+    // Method to raise the event
+    public void RaiseEvent() {
+        Console.WriteLine("Event raised by Animal.");
+        AnimalEvent?.Invoke(this, EventArgs.Empty);
+    }
+}
+
+// Derived class
+class Dog : Animal {
+    public string Breed { get; set; }
+
+    // Constructor
+    public Dog(string name, int age, string breed) : base(name, age) {
+        Breed = breed;
+    }
+
+    // Method override
+    public override void DisplayInfo() {
+        Console.WriteLine($"Name: {Name}, Age: {Age}, Breed: {Breed}");
+    }
+}
+
+class Program {
+    static void Main(string[] args) {
+        // Create an instance of Dog
+        Dog dog = new Dog("Buddy", 3, "Labrador");
+
+        // Call methods and properties
+        dog.DisplayInfo(); // Output: Name: Buddy, Age: 3, Breed: Labrador
+
+        // Event handling
+        dog.AnimalEvent += (sender, e) => {
+            Console.WriteLine("Event handled by Dog.");
+        };
+        dog.RaiseEvent(); // Output: Event raised by Animal. Event handled by Dog.
+
+        // Anonymous type
+        var person = new { Name = "John", Age = 30, City = "New York" };
+        Console.WriteLine($"Name: {person.Name}, Age: {person.Age}, City: {person.City}"); // Output: Name: John, Age: 30, City: New York
+    }
+}
